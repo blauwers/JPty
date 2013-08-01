@@ -26,6 +26,8 @@ package jpty;
  */
 public class JPtyException extends RuntimeException
 {
+  private static final long serialVersionUID = -2007039540922814066L;
+
   // VARIABLES
 
   private final int m_errno;
