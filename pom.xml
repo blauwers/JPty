@@ -7,8 +7,24 @@
   <name>JPty</name>
   <description>A small PTY interface for Java.</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
+    <sourceDirectory>${source.dir}</sourceDirectory>
+    <testSourceDirectory>${testSource.dir}</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>${source.dir}</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${testSource.dir}</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin> 
         <artifactId>maven-compiler-plugin</artifactId>
@@ -66,5 +82,7 @@
   </dependencies>
   <properties>
     <java.version>1.6</java.version>
+    <source.dir>src</source.dir>
+    <testSource.dir>test</testSource.dir>
   </properties>
 </project>
