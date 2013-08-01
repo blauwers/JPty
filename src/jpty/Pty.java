@@ -55,6 +55,8 @@ public final class Pty implements Closeable
 
   private volatile InputStream m_masterIS;
   private volatile OutputStream m_masterOS;
+  
+  private boolean useDrain = true;  // use tcdrain in flush by default
 
   // CONSTRUCTORS
 
@@ -70,6 +72,27 @@ public final class Pty implements Closeable
   {
     m_fdMaster = fdMaster;
     m_childPid = childPid;
+  }
+
+  /**
+   * Gets the state of the {@code useDrain} flag.
+   * @return flag state
+   */
+  public boolean isUseDrain() {
+    return useDrain;
+  }
+
+  /**
+   * Sets the state of the {@code useDrain} flag.
+   * <p>
+   * This flag controls whether a call to {@link OutputStream#flush()} on
+   * this PTY will invoke the underlying call to the {@code tcdrain} system
+   * call.  On some operating systems, this call hangs inexplicably.
+   * 
+   * @param useDrain the flag value to set
+   */
+  public void setUseDrain(boolean useDrain) {
+    this.useDrain = useDrain;
   }
 
   // METHODS
@@ -229,7 +252,7 @@ public final class Pty implements Closeable
       {
         checkState();
 
-        if ( tcdrain( m_fdMaster ) < 0 )
+        if (isUseDrain() && tcdrain( m_fdMaster ) < 0 )
         {
           close();
           throw new EOFException();
