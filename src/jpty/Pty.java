@@ -190,7 +190,9 @@ public final class Pty implements Closeable
       {
         checkState();
 
-        return JTermios.read( m_fdMaster, b, len );
+        int read = JTermios.read( m_fdMaster, b, len ); 
+        if (read == 0) return -1;
+        return read;
       }
     };
   }
