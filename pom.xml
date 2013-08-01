@@ -65,6 +65,18 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.10</version> 
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version> 
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.2</version> 
+      </plugin>
     </plugins>
   </build>
   <dependencies>
