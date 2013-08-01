@@ -21,6 +21,9 @@
 package jpty.macosx;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import jpty.JPty;
 import jpty.JPty.JPtyInterface;
 import jpty.WinSize;
@@ -79,6 +82,12 @@ public class JPtyImpl implements JPtyInterface
       winSize.ws_xpixel = ws_xpixel;
       winSize.ws_ypixel = ws_ypixel;
     }
+    
+    protected List getFieldOrder() {
+      return Arrays.asList(new String[] { 
+          "ws_row", "ws_col", "ws_xpixel", "ws_ypixel" } );             
+    }
+
   }
 
   // CONSTANTS
